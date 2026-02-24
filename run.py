@@ -8,7 +8,7 @@ import time
 # ================= USER SETTINGS =================
 
 PORT = "COM5"
-BAUD = 9600          # <== Changed to 4800 as requested
+BAUD = 4800          # Per manual default (section 1.3)
 OLD_ID = 1
 NEW_ID = 21
 
@@ -39,7 +39,12 @@ def main():
 
     if not client.connect():
         print("❌ Cannot open COM port")
-        return
+        print("   Retrying in 2 seconds...")
+        time.sleep(2)
+        if not client.connect():
+            print("❌ Still cannot open COM port - it may be in use by another application")
+            print("   Try closing configuration software or other terminal programs")
+            return
 
     print(f"✅ Connected to {PORT} @ {BAUD} baud")
 

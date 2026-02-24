@@ -24,8 +24,7 @@ client = ModbusSerialClient(
     parity=PARITY,
     stopbits=STOPBITS,
     bytesize=BYTESIZE,
-    timeout=TIMEOUT,
-    rtscts=False
+    timeout=TIMEOUT
 )
 
 if not client.connect():
